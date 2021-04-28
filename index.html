@@ -11,10 +11,22 @@
 
     <link rel="stylesheet" href="style.css" />
 
-    <title>Frontend Starter</title>
+    <title>Price Filter</title>
   </head>
   <body>
-    <h1>Frontend Starter</h1>
+    <h1>Price Filter</h1>
+    <form>
+      <div>
+        <input
+          type="range"
+          id="price-range"
+          name="price-range"
+          min="9.99"
+          max="399.99"
+        />
+        <label for="price-range">Min Price</label>
+      </div>
+    </form>
     <script src="./scripts.js" type="module"></script>
   </body>
 </html>
