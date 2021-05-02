@@ -27,28 +27,24 @@ const catalog = [
 
 // Variable Declaration
 
-document.body.appendChild(document.createElement('ul'));
-const ul = document.querySelector('ul');
-const newItems = []; // The New array
+const ul = document.createElement('ul');
 const range = document.getElementById('price-range');
 
-// Filter Function
-function filterByPrice(products, maxPrice) {
-  return products.filter(({ price }) => price.slice(1) <= maxPrice);
-}
-
 // Render Function
-function renderItems(pramItems) {
-  // TODO: Turn a bunch of items into a full li
-  ul.innerHTML = pramItems
+function renderItems(maxPrice) {
+  const filteredCatalog = maxPrice
+    ? catalog.filter(({ price }) => price.slice(1) < maxPrice)
+    : catalog;
+
+  ul.innerHTML = filteredCatalog
     .map(({ name, price }) => `<li>${name} - ${price}</li>`)
     .join('');
-  filterByPrice(catalog, range.value);
 }
 
-// Slider Event Handler
-range.addEventListener('input', event => {
-  renderItems(catalog);
-});
+document.body.appendChild(ul);
+renderItems();
 
-// Todo: 1. Map into the New Array that will filter the results by the number indicated by the slider, then the render will show the filtered results.
+// Slider Event Handler
+range.addEventListener('input', ({ target: { value } }) => {
+  renderItems(Number(value));
+});
