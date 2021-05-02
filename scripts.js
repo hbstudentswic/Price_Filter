@@ -2,26 +2,32 @@ const catalog = [
   {
     price: '$49.99',
     name: 'Football',
+    stocked: true,
   },
   {
     price: '$9.99',
     name: 'Baseball',
+    stocked: true,
   },
   {
     price: '$29.99',
     name: 'Basketball',
+    stocked: false,
   },
   {
     price: '$99.99',
     name: 'iPod Touch',
+    stocked: true,
   },
   {
     price: '$399.99',
     name: 'iPhone 5',
+    stocked: false,
   },
   {
     price: '$199.99',
     name: 'Nexus 7',
+    stocked: true,
   },
 ];
 
@@ -30,7 +36,7 @@ const catalog = [
 const ul = document.createElement('ul');
 const range = document.getElementById('price-range');
 const searchitem = document.querySelector('#search-name');
-const stocked = document.querySelector('#stocked-checkbox');
+const stockitem = document.querySelector('#stocked-checkbox');
 
 // Render Function
 function renderItems(maxPrice) {
@@ -51,6 +57,14 @@ function filterProductsBySearch(products, search) {
   return searchedItems;
 }
 
+// Stock Filter
+function filterByStocked(products) {
+  const stockedItems = products.filter(({ stocked }) => stocked === true);
+  return stockedItems;
+}
+
+const ItemsStocked = filterByStocked(catalog);
+
 document.body.appendChild(ul);
 renderItems(catalog);
 
@@ -64,4 +78,13 @@ searchitem.addEventListener('keyup', event => {
   const letters = event.target.value;
   const filteredItems = filterProductsBySearch(catalog, letters);
   renderItems(filteredItems);
+});
+
+// Stocked Items Check Box Event Handler
+stockitem.addEventListener('change', ({ target: { checked } }) => {
+  if (stockitem.checked) {
+    renderItems(ItemsStocked);
+  } else {
+    renderItems(catalog);
+  }
 });
