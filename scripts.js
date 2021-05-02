@@ -29,6 +29,8 @@ const catalog = [
 
 const ul = document.createElement('ul');
 const range = document.getElementById('price-range');
+const searchitem = document.querySelector('#search-name');
+const stocked = document.querySelector('#stocked-checkbox');
 
 // Render Function
 function renderItems(maxPrice) {
@@ -41,10 +43,25 @@ function renderItems(maxPrice) {
     .join('');
 }
 
+// Search Filter
+function filterProductsBySearch(products, search) {
+  const searchedItems = products.filter(({ name }) =>
+    name.toLowerCase().includes(search),
+  );
+  return searchedItems;
+}
+
 document.body.appendChild(ul);
-renderItems();
+renderItems(catalog);
 
 // Slider Event Handler
 range.addEventListener('input', ({ target: { value } }) => {
   renderItems(Number(value));
+});
+
+// Search Text Box Event Handler
+searchitem.addEventListener('keyup', event => {
+  const letters = event.target.value;
+  const filteredItems = filterProductsBySearch(catalog, letters);
+  renderItems(filteredItems);
 });
