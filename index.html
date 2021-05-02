@@ -17,6 +17,10 @@
     <h1>Price Filter</h1>
     <form>
       <div>
+        <input type="checkbox" id="stocked-checkbox" />
+        <label for="stocked-checkbox">Item In-Stock</label>
+      </div>
+      <div>
         <input
           type="range"
           id="price-range"
@@ -25,6 +29,10 @@
           max="399.99"
         />
         <label for="price-range">Min Price</label>
+      </div>
+      <div>
+        <label for="search-name">Search by Name</label>
+        <input type="text" id="search-name" />
       </div>
     </form>
     <script src="./scripts.js" type="module"></script>
