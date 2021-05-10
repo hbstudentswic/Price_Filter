@@ -34,6 +34,29 @@
         <label for="search-name">Search by Name</label>
         <input type="text" id="search-name" />
       </div>
+
+      <table>
+        <thead>
+          <tr>
+            <td>Name</td>
+            <td>Price</td>
+          </tr>
+        </thead>
+        <!-- TODO (JS):
+        1. Grab the tbody.
+        2. Grab the template.
+        3. Clone the template
+        4. Select all of the 'td''s in the template-->
+        <tbody></tbody>
+      </table>
+
+      <!-- We will use JS to make clones of this template and use it over and over to generate multiple rows.-->
+      <template>
+        <tr>
+          <td></td>
+          <td></td>
+        </tr>
+      </template>
     </form>
     <script src="./scripts.js" type="module"></script>
   </body>
