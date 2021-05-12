@@ -65,6 +65,7 @@ function render(maxPrice) {
   // Append the row to the 'tbody'
 
   filteredCatalog.forEach(product => {
+    // For Each will mutate the original array, map will create a new array. ** FOR MY PROJECT I WILL MOST LIKELY USE FOR EACH SO I CAN ADD NEW GAMES INTO THE ARRAY**
     const newRow = template.content.cloneNode(true); // The 'content of the template is the stuff inside the 'tr' cloneNode makes a copy of the content.
     // console.log(newRow); FOR TESTING ONLY: we saw that it made a fragment for every object in the array
     const tds = newRow.querySelectorAll('td');
